@@ -1,0 +1,12 @@
+{
+  "name": "mobileshope",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "sass ./HTMLTemplate/sass/style.scss ./css/style.css --watch"
+},
+  "author": "saif yaser",
+  "license": "ISC"
+}
