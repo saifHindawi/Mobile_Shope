@@ -28,9 +28,8 @@
 
                               <!-- Product Qty -->
                               <div class="qty d-flex pt-2 flex-wrap">
-                                  <div class="d-flex font-rale" style="">
-                                      <button class="qty-up border bg-light" data-id="pro1">
-                                          <i class="fas fa-angle-up"></i>
+                                  <div class="d-flex font-rale" <button class="qty-up border bg-light" data-id="pro1">
+                                      <i class="fas fa-angle-up"></i>
                                       </button>
                                       <input data-id="pro1" type="text" class="qty-input border px-2 w-100 bg-light"
                                           readonly />
@@ -79,7 +78,7 @@
 
                               <!-- Product Qty -->
                               <div class="qty d-flex pt-2 flex-wrap">
-                                  <div class="d-flex font-rale" style="">
+                                  <div class="d-flex font-rale">
                                       <button data-id="pro2" class="qty-up border bg-light">
                                           <i class="fas fa-angle-up"></i>
                                       </button>
