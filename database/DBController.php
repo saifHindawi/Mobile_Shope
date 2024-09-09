@@ -2,7 +2,7 @@
 
 class DBController{
     //database connection properties
-    protected $host = "localhost";
+    protected $host = "server";
     protected $user = "root";
     protected $password = "";
     protected $database = "shope";
