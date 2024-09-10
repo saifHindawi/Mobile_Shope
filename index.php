@@ -1,4 +1,5 @@
 <?php
+ob_start();
     // include header.php
     include("./header.php");
 ?>
@@ -22,8 +23,6 @@
     //include _blogs.php
     include("./Template/_blogs.php");
 
-    //include _blogs.php
-    include("./Template/_blogs.php");
 ?>
 
 <?php
