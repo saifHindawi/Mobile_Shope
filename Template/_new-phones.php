@@ -36,13 +36,18 @@
                             <span>$<?php echo $item['item_price']?? "O" ?> </span>
                         </div>
                         <div>
+                               
                                 <form method="post">
-                                    <input type="hidden" name="item_id" value="<?php echo $item['item_id']?? '1'; ?>">
-                                    <input type="hidden" name="user_id" value="<?php echo 1; /*echo $item['user_id']?? '1'*/ ?>">
-                                    <button name="new_phones_submit" type="submit" class="btn btn-warning font-size-12">
-                                        Add to cart
-                                    </button>
-                                </form>
+                                <input type="hidden" name="item_id" value="<?php echo $item['item_id']?? '1'; ?>">
+                                <input type="hidden" name="user_id" value="<?php echo 1; /*echo $item['user_id']?? '1'*/ ?>">
+                                <?php
+                            if (in_array($item['item_id'], $Cart->getCartId($product->getData('cart')) ?? [])){
+                                echo '<button type="submit" name="new_phones_submit" disabled class="btn btn-success font-size-12">In the Cart</button>';
+                            }else{
+                                echo '<button type="submit" name="new_phones_submit" class="btn btn-warning font-size-12">Add to Cart</button>';
+                            }
+                            ?>
+                            </form>
                         </div>
                     </div>
                 </div>

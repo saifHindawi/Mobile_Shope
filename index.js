@@ -71,28 +71,70 @@ $(document).ready(function () {
   
     let $qty_up = $(".qty .qty-up");
     let $qty_down = $(".qty .qty-down");
+    let $deal_price = $("#deal-price");
   
-    // تعيين قيمة ابتدائية داخل input
     $(".qty-input").val(1);
   
-    // عند الضغط على زر الزيادة
     $qty_up.click(function (e) {
-      // اختيار الـ input المقابل بناءً على data-id
+
       let $input = $(`.qty-input[data-id='${$(this).data("id")}']`);
-      let currentVal = parseInt($input.val());
-      if (currentVal >= 1 && currentVal < 10) {
-        $input.val(currentVal + 1);
-      }
+      let $price = $(`.product_price[data-id='${$(this).data("id")}']`);
+
+      //change product price ajax call
+      $.ajax({url:"Template/ajax.php", type:"post", data:{itemid:$(this).data("id")},success: function(result){
+        let obj = JSON.parse(result);
+        let item_price = obj[0]['item_price'];
+
+        let currentVal = parseInt($input.val());
+        if (currentVal >= 1 && currentVal < 10) {
+          $input.val(currentVal + 1);
+
+          // increase price of the product
+          $price.text(parseInt(item_price * $input.val()).toFixed(2));
+
+           // set subtotal price
+           let subtotal = parseInt($deal_price.text()) + parseInt(item_price);
+           $deal_price.text(subtotal.toFixed(2));
+        }
+        }});//closing ajax
+
+      
+    });
+
+    $qty_down.click(function (e) {
+
+      let $input = $(`.qty-input[data-id='${$(this).data("id")}']`);
+      let $price = $(`.product_price[data-id='${$(this).data("id")}']`);
+  
+      //change product price ajax call
+      $.ajax({
+          url: "Template/ajax.php",
+          type: "post",
+          data: { itemid: $(this).data("id") },
+          success: function (result) {
+              let obj = JSON.parse(result);
+              let item_price = obj[0]['item_price'];
+  
+              let currentVal = parseInt($input.val());
+              if (currentVal > 1) {
+                  $input.val(currentVal - 1);
+
+                  // increase price of the product
+              $price.text(parseInt(item_price * $input.val()).toFixed(2));
+
+              // set subtotal price
+              let subtotal = parseInt($deal_price.text()) - parseInt(item_price);
+              $deal_price.text(subtotal.toFixed(2));
+              }
+  
+              
+          }
+      }); //closing ajax
+  
+  }); //closing $qty_down.click
+  
+      
     });
   
-    // عند الضغط على زر النقصان
-    $qty_down.click(function (e) {
-      // اختيار الـ input المقابل بناءً على data-id
-      let $input = $(`.qty-input[data-id='${$(this).data("id")}']`);
-      let currentVal = parseInt($input.val());
-      if (currentVal > 1) {
-        $input.val(currentVal - 1);
-      }
-    });
-  });
+   
   

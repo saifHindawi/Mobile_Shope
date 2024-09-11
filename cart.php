@@ -7,6 +7,9 @@ ob_start();
 <?php
     //include _products.php
     include("./Template/_cart-template.php");
+
+    //include _wishlist_template.php
+    include("./Template/_wishlist_template.php");
     
     //include _new-phones.php
     include("./Template/_new-phones.php");

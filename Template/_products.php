@@ -11,14 +11,23 @@
                       <img src="<?php echo $item['item_image']?? "./assets/products/1.png" ?>" alt="product1" class="img-fluid" />
                       <div class="form-row pt-4 font-size-16 font-baloo">
                           <div class="col">
-                              <button type="submit" class="btn btn-danger form-control">
+                              <!-- <button type="submit" class="btn btn-danger form-control">
                                   Proceed to Buy
-                              </button>
+                              </button> -->
+                              <button type="submit"  class="btn btn-danger  w-100 font-size-12">Proceed to Buy</button>
                           </div>
                           <div class="col">
-                              <button type="submit" class="btn btn-warning form-control">
-                                  Add to Cart
-                              </button>
+                          <form method="post">
+                                <input type="hidden" name="item_id" value="<?php echo $item['item_id']?? '1'; ?>">
+                                <input type="hidden" name="user_id" value="<?php echo 1; /*echo $item['user_id']?? '1'*/ ?>">
+                                <?php
+                            if (in_array($item['item_id'], $Cart->getCartId($product->getData('cart')) ?? [])){
+                                echo '<button type="submit" disabled class="btn btn-success  w-100 font-size-12">In the Cart</button>';
+                            }else{
+                                echo '<button type="submit" name="top_sale_submit" class="btn btn-warning font-size-12 w-100">Add to Cart</button>';
+                            }
+                            ?>
+                            </form>
                           </div>
                       </div>
                   </div>
